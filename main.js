@@ -1,9 +1,26 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 
+var request = require("request");
+
+var options = {
+  method: 'GET',
+  url: 'https://eu1.mobileiron.com/msa/v1/cps/event/$metadata',
+};
+
+request(options, function (error, response, body) {
+  console.log(error);
+  console.log(response);
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow;
 
 function createWindow () {
   // Create the browser window.
